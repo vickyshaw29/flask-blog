@@ -197,7 +197,7 @@ def edit(sno):
                 db.session.commit()
                 return redirect('/edit/' + sno)
         post = Posts.query.filter_by(sno=sno)
-        return render_template('edit.html', params=params, post=post)
+        return render_template('edit.html', params=params, post=post,sno=sno)
 
 
 app.run(debug=True)
