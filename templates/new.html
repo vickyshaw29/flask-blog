@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+    .text-center{
+        padding: 34px 415px;
+    }
+    .mb-4{
+        border-radius: 35px;
+    }
+</style>
+<div class="text-center">
+    <form class="form-signin" action="/dashboard" method="post">
+        <img class="mb-4" src="{{url_for('static',filename='img/raz-bg.jpg')}}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">admin login</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" name="uname" id="uname" class="form-control" placeholder="username" required autofocus>
+        <label for="pass" class="sr-only">Password</label>
+        <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+    </form>
+</div>
+</body>
+{% endblock %}

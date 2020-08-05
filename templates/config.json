@@ -1,0 +1,19 @@
+{
+    "params":  
+    {
+        "local_server":"True",
+        "local_uri":"mysql://root:@localhost/codesmasher",
+        "prod_uri":"mysql://root:@localhost/codesmasher",
+        "fb_url":"https://facebook.com/codesmasher",
+        "tw_url":"https://twitter.com/codesmasher",
+        "gh_url":"https://github.com/codesmasher",
+        "blog_name":"CodeWithRaz",
+        "tag_line":"a blog liked by porgrammers",
+        "no of posts":2,
+        "new_image":"raz-bg.jpg",
+        "admin_user":"vicky",
+        "admin_password":"shubham123",
+        "upload_location":"C:\\Users\\vicky shaw\\IdeaProjects\\flask\\static\\img"
+      
+    }
+}
