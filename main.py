@@ -6,12 +6,12 @@ import json
 import os
 import math
 from datetime import datetime
-with open(r'C:\Users\vicky shaw\IdeaProjects\flask\templates\config.json', 'r') as c:
+with open(r'C:\Users\vicky shaw\IdeaProjects\Blog made by vicky -2\templates\config.json', 'r') as c:
     params = json.load(c)["params"]
 local_server = True
 
 app = Flask(__name__)
-app.secret_key = 'super secrer key'
+app.secret_key = 'super secret key'
 app.config['UPLOAD_FOLDER'] = params['upload_location']
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
@@ -54,27 +54,26 @@ class Posts(db.Model):
 def index():
     posts = Posts.query.filter_by().all()
     # [0:params['no of posts']]
-    last=math.ceil(len(posts)/int(params['no of posts']))
-    page=request.args.get('page')
+    last = math.ceil(len(posts)/int(params['no of posts']))
+    page = request.args.get('page')
 
     if(not str(page).isnumeric()):
-        page=1
-    page=int(page)
-    posts=posts[(page-1)*int(params['no of posts']):(page-1)*int(params['no of posts'])+int(params['no of posts'])]
-    if(page==1):
-        prev_num="#"
-        next_num="/?page="+str(page+1)
-    elif (page==last):
-        prev_num="/?page="+str(page-1)
-        next_num="#"
+        page = 1
+    page = int(page)
+    posts = posts[(page-1)*int(params['no of posts']):(page-1)
+                  * int(params['no of posts'])+int(params['no of posts'])]
+    if(page == 1):
+        prev_num = "#"
+        next_num = "/?page="+str(page+1)
+    elif (page == last):
+        prev_num = "/?page="+str(page-1)
+        next_num = "#"
     else:
-        prev_num="/?page="+str(page-1)
-        next_num="/?page="+str(page+1)
-        
+        prev_num = "/?page="+str(page-1)
+        next_num = "/?page="+str(page+1)
 
-
-    # Pagination logic 
-    # first page 
+    # Pagination logic
+    # first page
     #    prev=nothing
     #    next=page+1
     # midddle
@@ -83,12 +82,17 @@ def index():
     # End
     #    prev=page-1
     #    next=nothing
-    return render_template('index.html', params=params, posts=posts,prev_num=prev_num,next_num=next_num)
+    return render_template('index.html', params=params, posts=posts, prev_num=prev_num, next_num=next_num)
 
 
 @app.route("/about")
 def about():
     return render_template('about.html', params=params)
+
+
+@app.route("/twin")
+def twin():
+    return render_template('twin.html', params=params)
 
 
 @app.route("/dashboard", methods=['GET', 'POST'])
@@ -166,6 +170,7 @@ def post_route(post_slug):
     post = Posts.query.filter_by(slug=post_slug).first()
 
     return render_template('post.html', params='params', post=post)
+
 # editing post through the (editbutton)
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -197,7 +202,7 @@ def edit(sno):
                 db.session.commit()
                 return redirect('/edit/' + sno)
         post = Posts.query.filter_by(sno=sno)
-        return render_template('edit.html', params=params, post=post,sno=sno)
+        return render_template('edit.html', params=params, post=post, sno=sno)
 
 
 app.run(debug=True)
